@@ -33,20 +33,18 @@ int main() {
   }
 
   printf("Regular Files:\n");
-  DIR *d2;
-  d2 = opendir(".");
-  file2 = readdir(d2); //reading for regular files
+  file2 = readdir(d); //reading for regular files
   if(errno){ //see if any error
    printf("Error number: %d\n", errno);
   }
 
   while (file2){
-    stat(file2->d2_name, &testr);
+    stat(file2->d_name, &testr);
     char permission[100];
     sprintf(permission, "%o", testr.st_mode);
     if(permission[0] == '1'){
-        printf("%s\n", file -> d2_name);
+        printf("%s\n", file -> d_name);
     }
-    file2 = readdir(d2);
+    file2 = readdir(d);
   }
 }
