@@ -10,20 +10,41 @@ int main() {
   DIR *d;
   d = opendir(".");
   struct dirent *file;
-  struct stat test; //used to see whether the file in the directory is a directory or a reg file
-  char* regfiles[100];
-  char* directories[100];
+  struct dirent *file2;
+  struct stat testd; //used to see whether the file in the directory
+  struct stat testr;
+  //char* regfiles[100];
+  //char* directories[100];
 
-  file = readdir(d);
+  printf("Directories:\n");
+  file = readdir(d); //reading for directories
+  if(errno){ //see if any error
+   printf("Error number: %d\n", errno);
+  }
+
   while (file){
-    stat(file->d_name, &test);
+    stat(file->d_name, &testd);
     char permission[100];
-    sprintf(permission, "%o", test.st_mode);
-    if(permission[0] == 1){
-
+    sprintf(permission, "%o", testd.st_mode);
+    if(permission[0] == 4){
+        printf("%s\n", file -> d_name);
     }
-
-    printf("%s\n", file -> d_name);
     file = readdir(d);
+  }
+
+  printf("Regular Files:\n");
+  file2 = readdir(d); //reading for directories
+  if(errno){ //see if any error
+   printf("Error number: %d\n", errno);
+  }
+
+  while (file2){
+    stat(file2->d_name, &testr);
+    char permission[100];
+    sprintf(permission, "%o", testr.st_mode);
+    if(permission[0] == 1){
+        printf("%s\n", file -> d_name);
+    }
+    file2 = readdir(d);
   }
 }
