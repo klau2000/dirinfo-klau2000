@@ -7,8 +7,6 @@
 #include <sys/stat.h>
 
 int main() {
-  DIR *d;
-  d = opendir(".");
   struct dirent *file;
   struct dirent *file2;
   struct stat testd; //used to see whether the file in the directory
@@ -17,6 +15,8 @@ int main() {
   //char* directories[100];
 
   printf("Directories:\n");
+  DIR *d;
+  d = opendir(".");
   file = readdir(d); //reading for directories
   if(errno){ //see if any error
    printf("Error number: %d\n", errno);
@@ -33,18 +33,20 @@ int main() {
   }
 
   printf("Regular Files:\n");
-  file2 = readdir(d); //reading for regular files
+  DIR *d2;
+  d2 = opendir(".");
+  file2 = readdir(d2); //reading for regular files
   if(errno){ //see if any error
    printf("Error number: %d\n", errno);
   }
 
   while (file2){
-    stat(file2->d_name, &testr);
+    stat(file2->d2_name, &testr);
     char permission[100];
     sprintf(permission, "%o", testr.st_mode);
     if(permission[0] == '1'){
-        printf("%s\n", file -> d_name);
+        printf("%s\n", file -> d2_name);
     }
-    file2 = readdir(d);
+    file2 = readdir(d2);
   }
 }
