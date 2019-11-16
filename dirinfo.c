@@ -26,14 +26,14 @@ int main() {
     stat(file->d_name, &testd);
     char permission[100];
     sprintf(permission, "%o", testd.st_mode);
-    if(*(permission) == 4){
+    if(permission[0] == '4'){
         printf("%s\n", file -> d_name);
     }
     file = readdir(d);
   }
 
   printf("Regular Files:\n");
-  file2 = readdir(d); //reading for directories
+  file2 = readdir(d); //reading for regular files
   if(errno){ //see if any error
    printf("Error number: %d\n", errno);
   }
@@ -42,7 +42,7 @@ int main() {
     stat(file2->d_name, &testr);
     char permission[100];
     sprintf(permission, "%o", testr.st_mode);
-    if(permission[0] == 1){
+    if(permission[0] == '1'){
         printf("%s\n", file -> d_name);
     }
     file2 = readdir(d);
