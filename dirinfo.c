@@ -26,7 +26,7 @@ int main() {
     stat(file->d_name, &testd);
     char permission[100];
     sprintf(permission, "%o", testd.st_mode);
-    if(permission[0] == 4){
+    if(*(permission) == 4){
         printf("%s\n", file -> d_name);
     }
     file = readdir(d);
