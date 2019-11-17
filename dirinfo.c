@@ -4,7 +4,7 @@
 #include <dirent.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include "dirinfo.h"
+#include "dir.h"
 
 void readable(long size) {
   int count = 0;
