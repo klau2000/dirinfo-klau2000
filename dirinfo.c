@@ -1,36 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
-#include <errno.h>
 #include <dirent.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include "dirinfo.h"
 
-int main() {
-  struct dirent *file;
-  struct dirent *file2;
-  struct stat testd; //used to see whether the file in the directory
-  struct stat testr;
-  //char* regfiles[100];
-  //char* directories[100];
-  DIR *d;
-  d = opendir(".");
-  file = readdir(d); //reading for directories
-  if(errno){ //see if any error
-   printf("Error number: %d\n", errno);
-  }
-
-  while (file){
-    stat(file->d_name, &testd);
-    char permission[100];
-    sprintf(permission, "%o", testd.st_mode);
-    if(permission[0] == '4'){
-        printf("%-20s\t Type: Directory\n", file -> d_name);
+void readable(long size) {
+  int count = 0;
+  while (size >= 1000) {
+    size = size / 1000;
+    count += 1;
+    if (count == 3) {
+      break;
     }
-    if(permission[0] == '1'){
-        printf("%-20s\t Type: Regular File\n", file -> d_name);
-    }
-    file = readdir(d);
   }
-
+  if (count == 0) {
+    printf("Readable Size of Regular Files: %dB\n", size);
+  }
+  if (count == 1) {
+    printf("Readable Size of Regular Files:%dKB\n", size);
+  }
+  if (count == 2){
+    printf("Readable Size of Regular Files:%dMB\n", size);
+  }
+  if (count == 3){
+    printf("Readable Size of Regular Files:%dGB\n", size);
+  }
 }
