@@ -25,10 +25,10 @@ int main() {
     char permission[100];
     sprintf(permission, "%o", testd.st_mode);
     if(permission[0] == '4'){
-        printf("%s\t Type: Directory\n", file -> d_name);
+        printf("%-20s\t Type: Directory\n", file -> d_name);
     }
     if(permission[0] == '1'){
-        printf("%s\t Type: Regular File\n", file -> d_name);
+        printf("%-20s\t Type: Regular File\n", file -> d_name);
     }
     file = readdir(d);
   }
