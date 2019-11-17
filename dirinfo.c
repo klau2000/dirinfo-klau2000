@@ -16,15 +16,15 @@ void readable(long size) {
     }
   }
   if (count == 0) {
-    printf("Readable Size of Regular Files: %dB\n", size);
+    printf("Readable Size of Regular Files: %ldB\n", size);
   }
   if (count == 1) {
-    printf("Readable Size of Regular Files:%dKB\n", size);
+    printf("Readable Size of Regular Files:%ldKB\n", size);
   }
   if (count == 2){
-    printf("Readable Size of Regular Files:%dMB\n", size);
+    printf("Readable Size of Regular Files:%ldMB\n", size);
   }
   if (count == 3){
-    printf("Readable Size of Regular Files:%dGB\n", size);
+    printf("Readable Size of Regular Files:%ldGB\n", size);
   }
 }
