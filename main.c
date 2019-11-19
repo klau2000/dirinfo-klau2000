@@ -6,7 +6,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <string.h>
-//#include "dir.h"
+#include "dir.h"
 
 int main(int argc, char *argv[]) {
   struct dirent *file;
