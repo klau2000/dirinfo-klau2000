@@ -39,6 +39,7 @@ int main(int argc, char *argv[]) {
     }
     if(permission[0] == '1'){ //if a regular file...
         printf("%-20s\t Type: Regular File\n", file -> d_name);
+        totalsize += test.st_size;
     }
     file = readdir(d);
   }
