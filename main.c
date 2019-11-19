@@ -5,21 +5,31 @@
 #include <dirent.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include "dir.h"
+#include <string.h>
+//#include "dir.h"
 
-int main() {
+int main(int argc, char *argv[]) {
   struct dirent *file;
   struct dirent *file2;
   struct stat test; //used to see whether the file in the directory
   long totalsize;
 
   DIR *d;
-  d = opendir(".");
-  file = readdir(d); //reading for directories
+  char input[100];
+  if(argc == 1){
+    printf("Please enter in a directory name:\n");
+    fgets(input, sizeof input, stdin);
+    d = opendir(input);
+  }
+  else {
+    d = opendir(argv[1]);
+  }
   if(errno){ //see if any error
-   printf("Error number: %d\n", errno);
+    printf("Error number: %d\n", errno);
+    printf("Error message: %s\n", strerror(errno));
   }
 
+  file = readdir(d);
   while (file){
     stat(file->d_name, &test);
     char permission[100];
@@ -33,5 +43,5 @@ int main() {
     }
     file = readdir(d);
   }
- readable(totalsize);
+// readable(totalsize);
 }
