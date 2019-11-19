@@ -43,5 +43,5 @@ int main(int argc, char *argv[]) {
     }
     file = readdir(d);
   }
-// readable(totalsize);
+readable(totalsize);
 }
