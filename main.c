@@ -11,7 +11,7 @@
 int main(int argc, char *argv[]) {
   struct dirent *file;
   struct stat test; //used to see if the file is a directory or regular file
-  long totalsize;
+  long totalsize = 0;
 
   DIR *d;
   char input[100];
